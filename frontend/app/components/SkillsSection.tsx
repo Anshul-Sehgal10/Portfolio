@@ -31,80 +31,6 @@ type Skill = {
   name: string;
   icon: LucideIcon | string;
 };
-  export const technologies = [
-  {
-    name: "React",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-  },
-  {
-    name: "Next.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
-  },
-  {
-    name: "TypeScript",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-  },
-  {
-    name: "Node.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-  },
-  {
-    name: "Python",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-  },
-  {
-    name: "MongoDB",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-  },
-  {
-    name: "PostgreSQL",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-  },
-  {
-    name: "Docker",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-  },
-  {
-    name: "Git",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-  },
-  {
-    name: "Tailwind",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-  },
-  {
-    name: "AWS",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
-  },
-  {
-    name: "TensorFlow",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg",
-  },
-  {
-    name: "Spring Boot",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
-  },
-  {
-    name: "Redis",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
-  },
-  {
-    name: "Numpy",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg",
-  },
-  {
-    name: "Postman",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
-  },
-  {
-    name: "Pandas",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg",
-  },
-  {
-    name: "Selenium",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg",
-  },
-];
 
 const skills: Skill[] = [
   { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain-wordmark.svg' },
@@ -158,8 +84,8 @@ export default function SkillsSection({ darkMode }: SkillsSectionProps) {
       <div className="relative overflow-hidden px-1">
         <div className="flex w-max gap-4 pb-2 skills-track">
           {loopingSkills.map((skill, index) => {
-            const isIconUrl = typeof skill.icon === 'string';
-            const IconComponent = isIconUrl ? null : skill.icon;
+            const iconSrc = typeof skill.icon === 'string' ? skill.icon : null;
+            const IconComponent = iconSrc ? null : skill.icon;
             return (
               <div
                 key={index}
@@ -173,9 +99,9 @@ export default function SkillsSection({ darkMode }: SkillsSectionProps) {
                         className="absolute bottom-0 h-8 w-8 rounded-full bg-white/55 blur-lg"
                       />
                     )}
-                    {isIconUrl ? (
+                    {iconSrc ? (
                       <img
-                        src={skill.icon}
+                        src={iconSrc}
                         alt={skill.name}
                         className="relative z-10 h-12 w-12 object-contain"
                         loading="lazy"
