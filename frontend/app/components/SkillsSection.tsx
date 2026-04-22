@@ -84,8 +84,6 @@ export default function SkillsSection({ darkMode }: SkillsSectionProps) {
       <div className="relative overflow-hidden px-1">
         <div className="flex w-max gap-4 pb-2 skills-track">
           {loopingSkills.map((skill, index) => {
-            const iconSrc = typeof skill.icon === 'string' ? skill.icon : null;
-            const IconComponent = iconSrc ? null : skill.icon;
             return (
               <div
                 key={index}
@@ -99,15 +97,15 @@ export default function SkillsSection({ darkMode }: SkillsSectionProps) {
                         className="absolute bottom-0 h-8 w-8 rounded-full bg-white/55 blur-lg"
                       />
                     )}
-                    {iconSrc ? (
+                    {typeof skill.icon === 'string' ? (
                       <img
-                        src={iconSrc}
+                        src={skill.icon}
                         alt={skill.name}
                         className="relative z-10 h-12 w-12 object-contain"
                         loading="lazy"
                       />
                     ) : (
-                      <IconComponent className={`relative z-10 w-12 h-12 ${darkMode ? 'text-white' : 'text-black'}`} />
+                      <skill.icon className={`relative z-10 w-12 h-12 ${darkMode ? 'text-white' : 'text-black'}`} />
                     )}
                   </div>
                   <span className={`font-semibold text-lg whitespace-nowrap ${darkMode ? 'text-white' : 'text-black'}`}>
