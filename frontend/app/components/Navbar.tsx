@@ -11,7 +11,7 @@ const playfair = Playfair_Display({
 
 type NavbarProps = {
   darkMode: boolean;
-  onToggleDarkMode: () => void;
+  onToggleDarkMode: (origin: { x: number; y: number }) => void;
   scrollToSection: (id: string) => void;
   scrollToTop: () => void;
 };
@@ -19,6 +19,14 @@ type NavbarProps = {
 export default function Navbar({ darkMode, onToggleDarkMode, scrollToSection, scrollToTop }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+
+  const triggerThemeToggle = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    onToggleDarkMode({
+      x: rect.left + rect.width / 2,
+      y: rect.top + rect.height / 2,
+    });
+  };
 
   const handleNavigate = (id: string) => {
     scrollToSection(id);
@@ -70,7 +78,7 @@ export default function Navbar({ darkMode, onToggleDarkMode, scrollToSection, sc
             </a>
 
             <button
-              onClick={onToggleDarkMode}
+              onClick={triggerThemeToggle}
               className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 ${darkMode ? 'bg-black/70 text-white hover:bg-[#50207A] hover:text-white' : 'bg-white text-black/90 hover:bg-[#50207A] hover:text-white'}`}
             >
               {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -78,7 +86,7 @@ export default function Navbar({ darkMode, onToggleDarkMode, scrollToSection, sc
           </div>
 
           <div className="md:hidden flex items-center gap-4">
-            <button onClick={onToggleDarkMode} className={`p-2.5 rounded-xl transition-all duration-300 ${darkMode ? 'bg-black/70 text-white' : 'bg-white text-black/90'}`}>
+            <button onClick={triggerThemeToggle} className={`p-2.5 rounded-xl transition-all duration-300 ${darkMode ? 'bg-black/70 text-white' : 'bg-white text-black/90'}`}>
               {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <button onClick={() => setMobileMenuOpen((prev) => !prev)} className={`p-2 transition-all duration-300 hover:scale-110 ${darkMode ? 'text-white/90' : 'text-black/90'}`}>

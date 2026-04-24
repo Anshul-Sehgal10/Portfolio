@@ -11,6 +11,17 @@ import ContactSection from './components/ContactSection';
 import FooterSection from './components/FooterSection';
 import BackToTopButton from './components/BackToTopButton';
 
+type ThemeToggleOrigin = {
+  x: number;
+  y: number;
+};
+
+type ViewTransitionCapableDocument = Document & {
+  startViewTransition?: (updateCallback: () => void | Promise<void>) => {
+    finished: Promise<void>;
+  };
+};
+
 export default function Portfolio() {
   const BOTTOM_THRESHOLD_PX = 140;
 
@@ -40,6 +51,40 @@ export default function Portfolio() {
   const scrollAnimationRef = useRef<number | null>(null);
   const orbRefs = useRef<Array<HTMLDivElement | null>>([]);
   const darkMode = themeOverride ?? prefersDark;
+
+  const updateThemeOverride = (nextDark: boolean) => {
+    setThemeOverride(nextDark === prefersDark ? null : nextDark);
+  };
+
+  const handleThemeToggle = ({ x, y }: ThemeToggleOrigin) => {
+    const nextDark = !darkMode;
+    const transitionDocument = document as ViewTransitionCapableDocument;
+    if (!transitionDocument.startViewTransition) {
+      updateThemeOverride(nextDark);
+      return;
+    }
+
+    const maxX = Math.max(x, window.innerWidth - x);
+    const maxY = Math.max(y, window.innerHeight - y);
+    const revealRadius = Math.hypot(maxX, maxY);
+    const root = document.documentElement;
+
+    root.style.setProperty('--theme-reveal-x', `${x}px`);
+    root.style.setProperty('--theme-reveal-y', `${y}px`);
+    root.style.setProperty('--theme-reveal-radius', `${revealRadius}px`);
+    root.dataset.themeTransition = 'circle';
+
+    const transition = transitionDocument.startViewTransition(() => {
+      updateThemeOverride(nextDark);
+    });
+
+    transition.finished.finally(() => {
+      delete root.dataset.themeTransition;
+      root.style.removeProperty('--theme-reveal-x');
+      root.style.removeProperty('--theme-reveal-y');
+      root.style.removeProperty('--theme-reveal-radius');
+    });
+  };
 
   useEffect(() => {
     let ticking = false;
@@ -207,23 +252,31 @@ export default function Portfolio() {
   return (
     <div className={`relative min-h-screen transition-colors duration-500 ${darkMode ? 'bg-black' : 'bg-white'}`}>
       <style>{`
+        :root {
+          --theme-reveal-x: 50vw;
+          --theme-reveal-y: 50vh;
+          --theme-reveal-radius: 0px;
+        }
+        html::view-transition-old(root),
+        html::view-transition-new(root) {
+          animation: none;
+          mix-blend-mode: normal;
+        }
+        html[data-theme-transition='circle']::view-transition-new(root) {
+          clip-path: circle(0 at var(--theme-reveal-x) var(--theme-reveal-y));
+          animation: themeCircleReveal 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes themeCircleReveal {
+          to {
+            clip-path: circle(var(--theme-reveal-radius) at var(--theme-reveal-x) var(--theme-reveal-y));
+          }
+        }
         .hide-scrollbar {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
-        }
-        @keyframes skillsMarquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .skills-track {
-          animation: skillsMarquee 60s linear infinite;
-          will-change: transform;
-        }
-        .skills-track:hover {
-          animation-play-state: paused;
         }
         @keyframes fadeInOpacity {
           from {
@@ -276,15 +329,7 @@ export default function Portfolio() {
 
       <Navbar
         darkMode={darkMode}
-        onToggleDarkMode={() => {
-          setThemeOverride((prev) => {
-            if (prev === null) {
-              return !prefersDark;
-            }
-
-            return !prev;
-          });
-        }}
+        onToggleDarkMode={handleThemeToggle}
         scrollToSection={scrollToSection}
         scrollToTop={scrollToTop}
       />

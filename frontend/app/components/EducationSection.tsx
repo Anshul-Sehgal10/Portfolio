@@ -1,5 +1,3 @@
-import { GraduationCap } from 'lucide-react';
-
 type EducationSectionProps = {
   darkMode: boolean;
 };
@@ -24,9 +22,14 @@ export default function EducationSection({ darkMode }: EducationSectionProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit Chitkara University website"
-              className={`w-14 h-14 rounded-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center ${darkMode ? 'bg-black/70 text-white' : 'bg-white text-black'}`}
+              className={`w-14 h-14 rounded-xl transition-transform duration-300 hover:scale-110 flex items-center justify-center overflow-hidden ${darkMode ? 'bg-black/70' : 'bg-white'}`}
             >
-              <GraduationCap className="w-8 h-8" aria-hidden="true" />
+              <img
+                src="/ChitkaraLogo2.jpeg"
+                alt="Chitkara University logo"
+                className="w-10 h-10 object-contain"
+                loading="lazy"
+              />
             </a>
             <div className="flex-1">
               <h3 className={`text-2xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
