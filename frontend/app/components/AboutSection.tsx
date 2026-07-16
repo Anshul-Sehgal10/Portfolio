@@ -50,10 +50,10 @@ export default function AboutSection({ darkMode, scrollY }: AboutSectionProps) {
                 }}
               >
                 <div
-                  className={`absolute inset-0 p-6 rounded-2xl ${darkMode ? 'bg-black/50 border border-[#838ce5]/20' : 'bg-white border border-[#838ce5]/35'} shadow-xl`}
+                  className={`absolute inset-0 p-6 rounded-2xl overflow-y-auto hide-scrollbar ${darkMode ? 'bg-black/50 border border-[#838ce5]/20' : 'bg-white border border-[#838ce5]/35'} shadow-xl`}
                   style={{ backfaceVisibility: 'hidden' }}
                 >
-                  <p className={`text-base leading-relaxed ${darkMode ? 'text-white/90' : 'text-black/90'}`}>
+                  <p className={`text-sm sm:text-base leading-relaxed ${darkMode ? 'text-white/90' : 'text-black/90'}`}>
                     {aboutText}
                   </p>
                 </div>
