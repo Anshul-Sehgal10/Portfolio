@@ -8,6 +8,10 @@ import {
   Users,
   Layout,
   Github,
+  Database,
+  Search,
+  Bot,
+  Sparkles,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
@@ -123,6 +127,10 @@ const skills: Skill[] = [
   { name: "API Design", icon: Network },
   { name: "Agile Development", icon: Users },
   { name: "System Design Basics", icon: Layout },
+  { name: "Retrieval-Augmented Generation", icon: Sparkles },
+  { name: "Vector Databases (ChromaDB)", icon: Database },
+  { name: "Local AI & Offline LLMs", icon: Bot },
+  { name: "Semantic Search", icon: Search },
 ];
 
 const loopingSkills = [...skills, ...skills, ...skills];

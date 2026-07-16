@@ -12,7 +12,7 @@ export default function AboutSection({ darkMode, scrollY }: AboutSectionProps) {
   const [aboutCardFlipped, setAboutCardFlipped] = useState(false);
   const sectionParallax = Math.min(Math.max((scrollY - 260) * 0.02, 0), 18);
   const aboutText =
-    'I am a Computer Science Engineering student at Chitkara University with a deep passion for web development and creating impactful digital solutions. My journey in tech has led me to master both front-end and back-end technologies, allowing me to build complete, scalable applications from the ground up. I thrive on solving complex problems, learning new technologies, and turning ideas into functional, user-friendly products. Whether it is crafting responsive interfaces or architecting robust server-side logic, I am committed to writing clean, maintainable code that makes a difference.';
+    "I am a Computer Science Engineering student at Chitkara University and an aspiring Software Engineer with a passion for building scalable web applications and AI-powered solutions. My journey in technology has given me a strong foundation in Data Structures & Algorithms, full-stack development, and modern AI frameworks, enabling me to design and develop end-to-end applications using technologies like Python, FastAPI, Next.js, PostgreSQL, and LangGraph. I enjoy solving complex problems, exploring emerging technologies, and transforming ideas into reliable, user-centric products. Whether it's architecting robust backend systems, developing intelligent AI workflows, or crafting seamless user experiences, I am committed to writing clean, maintainable code and continuously growing as an engineer while creating software that makes a meaningful impact";
 
   return (
     <section
@@ -79,7 +79,7 @@ export default function AboutSection({ darkMode, scrollY }: AboutSectionProps) {
         </div>
 
         <div className="hidden md:grid md:grid-cols-[auto_1fr] items-center gap-10 md:gap-14">
-          <div className={`p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] md:order-2 md:text-right ${darkMode ? 'bg-black/50 border border-[#838ce5]/20 hover:border-[#838ce5]/40' : 'bg-white border border-[#838ce5]/35 hover:border-[#838ce5]'} shadow-xl hover:shadow-2xl`}>
+          <div className={`p-8 rounded-2xl transition-all duration-300 hover:scale-[1.02] md:order-2 ${darkMode ? 'bg-black/50 border border-[#838ce5]/20 hover:border-[#838ce5]/40' : 'bg-white border border-[#838ce5]/35 hover:border-[#838ce5]'} shadow-xl hover:shadow-2xl`}>
             <p className={`text-lg leading-relaxed ${darkMode ? 'text-white/90' : 'text-black/90'}`}>
               {aboutText}
             </p>
