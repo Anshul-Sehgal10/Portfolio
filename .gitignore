@@ -35,3 +35,6 @@ backend/data/*.tmp
 
 # Ignore all files in the backend/data directory 
 backend/data/*
+
+# HireIQ Readme
+HireIQ_PRD.md
