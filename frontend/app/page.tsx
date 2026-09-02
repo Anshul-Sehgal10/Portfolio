@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
 import SkillsSection from './components/SkillsSection';
+import ExperienceSection from './components/ExperienceSection';
 import ProjectsSection from './components/ProjectsSection';
 import EducationSection from './components/EducationSection';
 import ContactSection from './components/ContactSection';
@@ -336,6 +337,7 @@ export default function Portfolio() {
       <HeroSection darkMode={darkMode} scrollToSection={scrollToSection} scrollY={scrollY} />
       <AboutSection darkMode={darkMode} scrollY={scrollY} />
       <SkillsSection darkMode={darkMode} />
+      <ExperienceSection darkMode={darkMode} />
       <ProjectsSection darkMode={darkMode} />
       <EducationSection darkMode={darkMode} />
       <ContactSection darkMode={darkMode} />

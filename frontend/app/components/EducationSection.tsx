@@ -39,7 +39,7 @@ export default function EducationSection({ darkMode }: EducationSectionProps) {
                   Bachelor of Engineering in Computer Science
                 </h3>
                 <span className={`shrink-0 text-sm font-medium px-3 py-1 rounded-full border ${darkMode ? 'bg-[#838ce5]/10 border-[#838ce5]/30 text-white/70' : 'bg-[#d6b9fc]/20 border-[#838ce5]/30 text-black/60'}`}>
-                  Jul 2023 – Jul 2027
+                  Jul 2023 - Jul 2027
                 </span>
               </div>
               <a
@@ -48,7 +48,7 @@ export default function EducationSection({ darkMode }: EducationSectionProps) {
                 rel="noopener noreferrer"
                 className="inline-block text-xl mb-3 font-semibold bg-gradient-to-r from-[#50207A] to-[#838ce5] bg-clip-text text-transparent hover:opacity-80 transition-opacity"
               >
-                Chitkara University — Rajpura, Punjab, India
+                Chitkara University - Rajpura, Punjab, India
               </a>
               <p className={`mb-4 ${darkMode ? 'text-white/90' : 'text-black/80'} leading-relaxed`}>
                 Currently pursuing degree with focus on software engineering, data structures, algorithms, and full-stack web development.

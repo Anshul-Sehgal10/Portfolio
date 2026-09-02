@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Bot, Plus, ShoppingCart, FileText, type LucideIcon } from 'lucide-react';
+import { Github, Bot, Plus, ShoppingCart, FileText, Sparkles, type LucideIcon } from 'lucide-react';
 import { useState } from 'react';
 
 type ProjectsSectionProps = {
@@ -17,6 +17,14 @@ type Project = {
 };
 
 const projects: Project[] = [
+  {
+    title: 'HireIQ',
+    description: 'AI-native hiring platform featuring semantic resume-to-job matching, dynamically generated behavioral scenarios using LangGraph, and anti-cheating test environments. Built with WebSocket real-time broadcast channels and multi-tenant RBAC to streamline end-to-end recruitment pipelines.',
+    tech: ['FastAPI', 'Next.js', 'PostgreSQL', 'LangGraph', 'pgvector', 'WebSockets'],
+    github: 'https://github.com/Anshul-Sehgal10/HireIQ.git',
+    image: '/Projects/HireIQ.png',
+    icon: Sparkles,
+  },
   {
     title: 'LocalAI',
     description: 'Privacy-first AI platform enabling users to run local LLMs via Ollama with zero data leakage. Supports hybrid mode with online APIs (Gemini) for complex tasks, integrated RAG pipeline for contextual retrieval, and document-based querying for offline intelligence.',
